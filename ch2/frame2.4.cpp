@@ -12,7 +12,7 @@ int main()
 	const int rows = pad * 2 + 3;
 	string::size_type cols = greeting.size() + pad * 2 + 2;
 
-	for(int r = 0; r != rows; r++) {
+	for (int r = 0; r != rows; r++) {
 		string::size_type c = 0;
 
 		while (c != cols) {
@@ -22,14 +22,26 @@ int main()
 			}
 			else {
 				if ((r == 0) || (r == rows - 1) || (c == 0) || (c == cols - 1))
+				{
 					cout << "*";
+					++c;
+				}
 				else
-					cout << " ";
-				c++;
+				{
+					if ( (r == pad + 1) && ( (c == 1) || (c == 1 + pad + greeting.size() ) ) )
+					{
+						string pad_spaces(" ", pad);
+						cout << pad_spaces;
+						c += pad;
+					}
+					else {
+						string pad_spaces(" ", greeting.size() + pad * 2);
+						cout << pad_spaces;
+						c += greeting.size() + pad * 2;
+					}
+				}
 			}
-
 		}
-
 		cout << endl;
 	}
 	return 0;
